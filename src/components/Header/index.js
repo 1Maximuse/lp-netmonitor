@@ -19,13 +19,13 @@ class Header extends React.Component {
 		if (this.props.login) {
 			return (
 				<Navbar bg="dark" variant="dark">
-					<Navbar.Brand class="Nav">
-						<img src={logo} width="30" height="30" alt="LP Logo" class="Nav-logo"/>
-						{' LP Net Monitor'}
+					<Navbar.Brand>
+						<img src={logo} alt="LP Logo" width="30" height="30" className="d-inline-block align-top"/>
+						<span style={s.nav}>{' LP Net Monitor'}</span>
 					</Navbar.Brand>
 					<Nav>
-						<Nav.Link onClick={() => this.props.setPage(0)} class="Nav">Overview</Nav.Link>
-						<Nav.Link onClick={() => this.props.setPage(1)} class="Nav">Tambah PC</Nav.Link>
+						<Nav.Link onClick={() => this.props.setPage(0)}>Overview</Nav.Link>
+						<Nav.Link onClick={() => this.props.setPage(1)}>Tambah PC</Nav.Link>
 					</Nav>
 					<Navbar.Collapse className="justify-content-end">
 						<Button onClick={this.handleLogout} variant="light">Log out</Button>
@@ -35,9 +35,9 @@ class Header extends React.Component {
 		} else {
 			return (
 				<Navbar bg="dark" variant="dark">
-					<Navbar.Brand class="Nav">
-						<img src={logo} width="30" height="30" alt="LP Logo" class="Nav-logo"/>
-						{' LP Net Monitor'}
+					<Navbar.Brand>
+						<img src={logo} alt="LP Logo" width="30" height="30" className="d-inline-block align-top"/>
+						<span style={s.nav}>{' LP Net Monitor'}</span>
 					</Navbar.Brand>
 					<Navbar.Collapse className="justify-content-end">
 						<Navbar.Text>Not logged in.</Navbar.Text>
@@ -48,5 +48,9 @@ class Header extends React.Component {
 		
 	}
 }
+
+const s = {
+	nav: {'paddingLeft': 5}
+};
 
 export default Header;

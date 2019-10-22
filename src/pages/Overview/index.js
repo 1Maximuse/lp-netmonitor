@@ -4,22 +4,32 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function Overview() {
-	return (
-		<Container fluid style={s.cont}>
-			<Computers cols={8} rows={5}/>
-		</Container>
-	);
+class Overview extends React.Component {
+	viewDetail = (id) => {
+		this.props.viewDetail(id);
+	};
+
+	render() {
+		return (
+			<Container fluid style={s.cont}>
+				<Computers cols={8} rows={5} viewDetail={this.viewDetail}/>
+			</Container>
+		);
+	}
 }
 
 class Computers extends React.Component {
+	viewDetail = (id) => {
+		this.props.viewDetail(id);
+	};
+
 	render() {
 		var col = [];
 		var i = 0;
 		for (; i < this.props.rows; i++) {
 			col.push(
 				<Row>
-					<ComputerRow start={this.props.cols*i} cols={this.props.cols} />
+					<ComputerRow key={i.toString()} start={this.props.cols*i} cols={this.props.cols} viewDetail={this.viewDetail}/>
 				</Row>
 			);
 		}
@@ -29,18 +39,18 @@ class Computers extends React.Component {
 	}
 }
 
-class ComputerModal extends React.Component {
-	
-}
-
 class ComputerRow extends React.Component {
+	viewDetail = (id) => {
+		this.props.viewDetail(id);
+	};
+
 	render() {
 		var row = [];
 		var i = 1;
 		for (; i <= this.props.cols / 2; i++) {
 			row.push(
 				<Col>
-					<Computer compId={i+this.props.start} />
+					<Computer compId={i+this.props.start} viewDetail={this.viewDetail}/>
 				</Col>
 			);
 		}
@@ -48,7 +58,7 @@ class ComputerRow extends React.Component {
 		for (; i <= this.props.cols; i++) {
 			row.push(
 				<Col>
-					<Computer compId={i+this.props.start} />
+					<Computer compId={i+this.props.start} viewDetail={this.viewDetail}/>
 				</Col>
 			);
 		}
@@ -57,7 +67,7 @@ class ComputerRow extends React.Component {
 }
 
 const s = {
-	cont: {'padding-top': 20}
+	cont: {'paddingTop': 20}
 };
 
 export default Overview;
