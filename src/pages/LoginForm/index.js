@@ -3,6 +3,7 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
+import Container from 'react-bootstrap/Container';
 
 class LoginForm extends React.Component {
 	constructor(props) {
@@ -39,30 +40,33 @@ class LoginForm extends React.Component {
 
 	render() {
 		return (
-			<Jumbotron style={s.form} className="w-25">
-				{this.state.failed ? (
-					<Alert onClose={() => this.setState({failed: false})} dismissible variant="danger">Wrong credentials!</Alert>
-				) : (
-					<></>
-				)}
-				<Form onSubmit={this.handleLogin}>
-					<Form.Group>
-						<Form.Label>Username</Form.Label>
-						<Form.Control required type="text" placeholder="Enter username" onChange={this.handleChangeUser} value={this.state.user} />
-					</Form.Group>
-					<Form.Group>
-						<Form.Label>Password</Form.Label>
-						<Form.Control required type="password" placeholder="Enter password" onChange={this.handleChangePass} value={this.state.pass} />
-					</Form.Group>
-					<Button className="w-100" type="submit" variant="success">Login</Button>
-				</Form>
-			</Jumbotron>
+			<Container>
+				<Jumbotron style={s.jumb}>
+					{this.state.failed ? (
+						<Alert onClose={() => this.setState({failed: false})} dismissible variant="danger">Wrong credentials!</Alert>
+					) : (
+						<></>
+					)}
+					<Form onSubmit={this.handleLogin} style={s.form}>
+						<Form.Group>
+							<Form.Label>Username</Form.Label>
+							<Form.Control required type="text" placeholder="Enter username" onChange={this.handleChangeUser} value={this.state.user} />
+						</Form.Group>
+						<Form.Group>
+							<Form.Label>Password</Form.Label>
+							<Form.Control required type="password" placeholder="Enter password" onChange={this.handleChangePass} value={this.state.pass} />
+						</Form.Group>
+						<Button className="w-100" type="submit" variant="success">Login</Button>
+					</Form>
+				</Jumbotron>
+			</Container>
 		);
 	}
 }
 
 const s = {
-	form: {position: 'absolute', left: '50%', top: '40%', transform: 'translate(-50%, -50%)'}
+	jumb: {position: 'absolute', left: '50%', top: '40%', transform: 'translate(-50%, -50%)'},
+	form: {width: '300px'}
 };
 
 export default LoginForm;
