@@ -1,8 +1,7 @@
 import React from 'react';
 import Computer from '../../components/Computer';
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Table from 'react-bootstrap/Table';
 
 class Overview extends React.Component {
 	viewDetail = (id) => {
@@ -12,7 +11,11 @@ class Overview extends React.Component {
 	render() {
 		return (
 			<Container fluid style={s.cont}>
-				<Computers cols={8} rows={5} viewDetail={this.viewDetail}/>
+				<Table borderless size="sm" style={s.table}>
+					<tbody>
+						<Computers cols={8} rows={5} viewDetail={this.viewDetail}/>
+					</tbody>
+				</Table>
 			</Container>
 		);
 	}
@@ -28,9 +31,9 @@ class Computers extends React.Component {
 		var i = 0;
 		for (; i < this.props.rows; i++) {
 			col.push(
-				<Row>
+				<tr>
 					<ComputerRow key={i.toString()} start={this.props.cols*i} cols={this.props.cols} viewDetail={this.viewDetail}/>
-				</Row>
+				</tr>
 			);
 		}
 		return (
@@ -49,17 +52,17 @@ class ComputerRow extends React.Component {
 		var i = 1;
 		for (; i <= this.props.cols / 2; i++) {
 			row.push(
-				<Col>
+				<td>
 					<Computer compId={i+this.props.start} viewDetail={this.viewDetail}/>
-				</Col>
+				</td>
 			);
 		}
-		row.push(<Col md={1}></Col>);
+		row.push(<td style={s.spacer} md={1}></td>);
 		for (; i <= this.props.cols; i++) {
 			row.push(
-				<Col>
+				<td>
 					<Computer compId={i+this.props.start} viewDetail={this.viewDetail}/>
-				</Col>
+				</td>
 			);
 		}
 		return (row);
@@ -67,7 +70,9 @@ class ComputerRow extends React.Component {
 }
 
 const s = {
-	cont: {'paddingTop': 20}
+	cont: {'padding': 10, 'paddingTop': 20, 'height': 'calc(100vh - 60px)','overflowY': 'auto', 'overflowX': 'auto'},
+	spacer: {'paddingLeft': '5em', 'paddingRight': '5em'},
+	table: {'margin': 0}
 };
 
 export default Overview;

@@ -18,7 +18,7 @@ class Header extends React.Component {
 	render() {
 		if (this.props.login) {
 			return (
-				<Navbar bg="dark" variant="dark">
+				<Navbar bg="dark" variant="dark" fixed="top">
 					<Navbar.Brand>
 						<img src={logo} alt="LP Logo" width="30" height="30" className="d-inline-block align-top"/>
 						<span style={s.nav}>{' LP Net Monitor'}</span>

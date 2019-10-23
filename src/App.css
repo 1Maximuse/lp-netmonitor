@@ -28,3 +28,9 @@
 .Nav {
   padding-left: 10;
 }
+
+body {
+  margin: 0;
+  height: 100%;
+  overflow-y: hidden;
+}

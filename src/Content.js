@@ -5,9 +5,6 @@ import LoginForm from './pages/LoginForm';
 import ComputerDetail from './pages/ComputerDetail';
 
 class Content extends React.Component {
-	constructor(props) {
-		super(props);
-	}
 	viewDetail = (detail) => {
 		this.props.viewDetail(detail);
 	};
@@ -16,7 +13,7 @@ class Content extends React.Component {
 		if (this.props.login === false) {
 			return <LoginForm doLogin={() => this.props.doLogin()}/>;
 		} else {
-			if (this.props.compId == -1) {
+			if (this.props.compId === -1) {
 				if (this.props.page === 0) return <Overview viewDetail={this.viewDetail}/>;
 				else if (this.props.page === 1) return <AddPC/>;
 			} else {

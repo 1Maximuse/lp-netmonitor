@@ -36,9 +36,15 @@ class App extends React.Component {
   render() {
     return [
       <Header doLogout={this.doLogout} login={this.state.login} setPage={this.setPage} page={this.state.page}/>,
-      <Content doLogin={this.doLogin} login={this.state.login} page={this.state.page} compId={this.state.compId} viewDetail={this.viewDetail}/>
+      <div style={s.div}>
+        <Content doLogin={this.doLogin} login={this.state.login} page={this.state.page} compId={this.state.compId} viewDetail={this.viewDetail}/>
+      </div>
     ];
   }
 }
 
+const s = {
+  div: {'padding': 0, 'paddingTop': 60}
+}
+;
 export default App;
