@@ -18,30 +18,34 @@ class Header extends React.Component {
 	render() {
 		if (this.props.login) {
 			return (
-				<Navbar bg="dark" variant="dark" fixed="top">
+				<Navbar bg="dark" variant="dark" fixed="top" expand="sm">
+  					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 					<Navbar.Brand>
 						<img src={logo} alt="LP Logo" width="30" height="30" className="d-inline-block align-top"/>
 						<span style={s.nav}>{' LP Net Monitor'}</span>
 					</Navbar.Brand>
-					<Nav>
-						<Nav.Link onClick={() => this.props.setPage(0)}>Overview</Nav.Link>
-						<Nav.Link onClick={() => this.props.setPage(1)}>Tambah PC</Nav.Link>
-					</Nav>
-					<Navbar.Collapse className="justify-content-end">
-						<Button onClick={this.handleLogout} variant="light">Log out</Button>
+					<Navbar.Collapse id="responsive-navbar-nav">
+						<Nav className="mr-auto">
+							<Nav.Link onClick={() => this.props.setPage(0)}>Overview</Nav.Link>
+							<Nav.Link onClick={() => this.props.setPage(1)}>Tambah PC</Nav.Link>
+						</Nav>
+						<Nav>
+							<Button onClick={this.handleLogout} variant="light">Log out</Button>
+						</Nav>
 					</Navbar.Collapse>
 				</Navbar>
 			);		
 		} else {
 			return (
-				<Navbar bg="dark" variant="dark">
+				<Navbar bg="dark" variant="dark" fixed="top" expand="sm">
 					<Navbar.Brand>
 						<img src={logo} alt="LP Logo" width="30" height="30" className="d-inline-block align-top"/>
 						<span style={s.nav}>{' LP Net Monitor'}</span>
 					</Navbar.Brand>
-					<Navbar.Collapse className="justify-content-end">
+					<Nav className="mr-auto"></Nav>
+					<Nav className="justify-content-end">
 						<Navbar.Text>Not logged in.</Navbar.Text>
-					</Navbar.Collapse>
+					</Nav>
 				</Navbar>
 			);
 		}
