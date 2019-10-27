@@ -2,8 +2,6 @@ import React from 'react';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import Table from 'react-bootstrap/Table';
 import comps from '../../testjson/computers';
 

@@ -2,6 +2,7 @@ import React from 'react';
 import Computer from '../../components/Computer';
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
+import comps from '../../testjson/computers';
 
 class Overview extends React.Component {
 	viewDetail = (id) => {
@@ -13,7 +14,7 @@ class Overview extends React.Component {
 			<Container fluid style={s.cont}>
 				<Table borderless size="sm" style={s.table}>
 					<tbody>
-						<Computers cols={8} rows={5} viewDetail={this.viewDetail}/>
+						<Computers cols={comps.layout.cols} rows={comps.layout.rows} viewDetail={this.viewDetail}/>
 					</tbody>
 				</Table>
 			</Container>
@@ -51,6 +52,7 @@ class ComputerRow extends React.Component {
 		var row = [];
 		var i = 1;
 		for (; i <= this.props.cols / 2; i++) {
+			if (i + this.props.start > comps.computers.length) break;
 			row.push(
 				<td>
 					<Computer compId={i+this.props.start} viewDetail={this.viewDetail}/>
@@ -59,6 +61,7 @@ class ComputerRow extends React.Component {
 		}
 		row.push(<td style={s.spacer} md={1}></td>);
 		for (; i <= this.props.cols; i++) {
+			if (i + this.props.start > comps.computers.length) break;
 			row.push(
 				<td>
 					<Computer compId={i+this.props.start} viewDetail={this.viewDetail}/>
@@ -71,7 +74,7 @@ class ComputerRow extends React.Component {
 
 const s = {
 	cont: {'padding': 10, 'paddingTop': 20, 'height': 'calc(100vh - 60px)','overflowY': 'auto', 'overflowX': 'auto'},
-	spacer: {'paddingLeft': '5em', 'paddingRight': '5em'},
+	spacer: {'paddingLeft': '4em', 'paddingRight': '4em'},
 	table: {'margin': 0}
 };
 
