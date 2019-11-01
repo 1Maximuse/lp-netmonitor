@@ -14,7 +14,7 @@ class Overview extends React.Component {
 			<Container fluid style={s.cont}>
 				<Table borderless size="sm" style={s.table}>
 					<tbody>
-						<Computers cols={comps.layout.cols} rows={comps.layout.rows} viewDetail={this.viewDetail}/>
+						<Computers cols={8} rows={8} viewDetail={this.viewDetail}/>
 					</tbody>
 				</Table>
 			</Container>
@@ -33,7 +33,7 @@ class Computers extends React.Component {
 		for (; i < this.props.rows; i++) {
 			col.push(
 				<tr>
-					<ComputerRow key={i.toString()} start={this.props.cols*i} cols={this.props.cols} viewDetail={this.viewDetail}/>
+					<ComputerRow rev={i % 2 === 0} key={i.toString()} start={this.props.cols*i} cols={this.props.cols} viewDetail={this.viewDetail}/>
 				</tr>
 			);
 		}
@@ -50,24 +50,47 @@ class ComputerRow extends React.Component {
 
 	render() {
 		var row = [];
-		var i = 1;
-		for (; i <= this.props.cols / 2; i++) {
-			if (i + this.props.start > comps.computers.length) break;
-			row.push(
-				<td>
-					<Computer compId={i+this.props.start} viewDetail={this.viewDetail}/>
-				</td>
-			);
+		var i;
+		if (this.props.rev) {
+			i = 1;
+			for (; i <= this.props.cols / 2; i++) {
+				if (i + this.props.start > comps.length) break;
+				row.push(
+					<td>
+						<Computer compId={i+this.props.start} viewDetail={this.viewDetail}/>
+					</td>
+				);
+			}
+			row.push(<td style={s.spacer} md={1}></td>);
+			for (; i <= this.props.cols; i++) {
+				if (i + this.props.start > comps.length) break;
+				row.push(
+					<td>
+						<Computer compId={i+this.props.start} viewDetail={this.viewDetail}/>
+					</td>
+				);
+			}
+		} else {
+			i = 8;
+			for (; i > this.props.cols / 2; i--) {
+				if (i + this.props.start > comps.length) break;
+				row.push(
+					<td>
+						<Computer compId={i+this.props.start} viewDetail={this.viewDetail}/>
+					</td>
+				);
+			}
+			row.push(<td style={s.spacer} md={1}></td>);
+			for (; i > 0; i--) {
+				if (i + this.props.start > comps.length) break;
+				row.push(
+					<td>
+						<Computer compId={i+this.props.start} viewDetail={this.viewDetail}/>
+					</td>
+				);
+			}
 		}
-		row.push(<td style={s.spacer} md={1}></td>);
-		for (; i <= this.props.cols; i++) {
-			if (i + this.props.start > comps.computers.length) break;
-			row.push(
-				<td>
-					<Computer compId={i+this.props.start} viewDetail={this.viewDetail}/>
-				</td>
-			);
-		}
+		
 		return (row);
 	}
 }

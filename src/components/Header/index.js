@@ -21,17 +21,17 @@ class Header extends React.Component {
 	render() {
 		if (this.props.login) {
 			const categories = [];
-			categories.push({name: "Operating System", cats: ["tes1", "tes2", "tes3"]});
-			categories.push({name: "Monitor", cats: ["tes1", "tes2", "tes3"]});
-			categories.push({name: "Keyboard", cats: ["tes1", "tes2", "tes3"]});
-			categories.push({name: "Mouse", cats: ["tes1", "tes2", "tes3"]});
-			categories.push({name: "Software", cats: ["tes1", "tes2", "tes3"]});
-			categories.push({name: "VRAM", cats: ["tes1", "tes2", "tes3"]});
-			categories.push({name: "RAM", cats: ["tes1", "tes2", "tes3"]});
-			categories.push({name: "Processor", cats: ["tes1", "tes2", "tes3"]});
-			categories.push({name: "Merk CPU", cats: ["tes1", "tes2", "tes3"]});
+			categories.push({name: "Operating System", cats: ["", "tes1", "tes2", "tes3"]});
+			categories.push({name: "Monitor", cats: ["", "tes1", "tes2", "tes3"]});
+			categories.push({name: "Keyboard", cats: ["", "tes1", "tes2", "tes3"]});
+			categories.push({name: "Mouse", cats: ["", "tes1", "tes2", "tes3"]});
+			categories.push({name: "Software", cats: ["", "tes1", "tes2", "tes3"]});
+			categories.push({name: "VRAM", cats: ["", "tes1", "tes2", "tes3"]});
+			categories.push({name: "RAM", cats: ["", "tes1", "tes2", "tes3"]});
+			categories.push({name: "Processor", cats: ["", "tes1", "tes2", "tes3"]});
+			categories.push({name: "Merk CPU", cats: ["", "tes1", "tes2", "tes3"]});
 			categories.push({name: "Pengguna"});
-			categories.push({name: "Status", cats: ["tes1", "tes2", "tes3"]});
+			categories.push({name: "Status", cats: ["", "tes1", "tes2", "tes3"]});
 			return (
 				<Navbar bg="dark" variant="dark" fixed="top" expand="sm">
   					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -44,11 +44,11 @@ class Header extends React.Component {
 							<Nav.Link onClick={() => this.props.setPage(0)}>Overview</Nav.Link>
 							<NavDropdown title="Filter" style={s.filter}>
 								<Form>
-									<Table><tbody>
+									<Table style={s.table}><tbody>
 										{categories.map((category, index) => (
 											<tr>
-												<td><Form.Label as="td">{category.name}</Form.Label></td>
-												<td>
+												<td style={s.td}><Form.Label as="td">{category.name}</Form.Label></td>
+												<td style={s.td}>
 													{(!!category.cats) ? (
 														<Form.Control as={"select"}>
 															{category.cats.map((cat) => (<option>{cat}</option>))}
@@ -60,7 +60,10 @@ class Header extends React.Component {
 											</tr>
 										))}
 										<tr>
-											<td colspan='2'><Button style={s.filterbutton}>Filter</Button></td>
+											<td style={s.tdbtn} colspan='2'><Button style={s.filterbutton}>Filter</Button></td>
+										</tr>
+										<tr>
+											<td style={s.tdbtn} colspan='2'><Button variant="danger" style={s.filterbutton}>Reset</Button></td>
 										</tr>
 									</tbody></Table>
 								</Form>
@@ -93,7 +96,10 @@ class Header extends React.Component {
 const s = {
 	nav: {'paddingLeft': 5},
 	filter: {'width': '50em'},
-	filterbutton: {'width': '100%'}
+	filterbutton: {'width': '100%'},
+	td: {'borderStyle': 'none'},
+	tdbtn: {'borderStyle': 'none', 'paddingTop': 0},
+	table: {'marginBottom': 0}
 };
 
 export default Header;

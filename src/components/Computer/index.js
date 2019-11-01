@@ -40,10 +40,9 @@ class Computer extends React.Component {
 	}
 
 	render() {
-		const ip = comps.computers[this.props.compId-1].ip;
-		const mac = comps.computers[this.props.compId-1].mac;
-		const type = comps.computers[this.props.compId-1].type;
-		const detail = comps.computers[this.props.compId-1].detail;
+		const ip = comps[this.props.compId-1].ip;
+		const pengguna = comps[this.props.compId-1].pengguna;
+		const status = comps[this.props.compId-1].status;
 		return [
 			<Jumbotron style={this.state.hover ? (s.hover) : (s.empty)} onMouseEnter={() => this.hover()} onMouseLeave={() => this.unhover()} onClick={() => this.click()}>
 				<h4 style={s.title}>Comp {this.props.compId}</h4>
@@ -62,20 +61,14 @@ class Computer extends React.Component {
 						</tbody>
 						<tbody>
 							<tr>
-								<td>MAC Address</td>
-								<td style={mac === "" ? (s.unassigned) : (s.empty)}>{mac === "" ? ("Unavailable") : (mac)}</td>
+								<td>User</td>
+								<td style={pengguna === "" ? (s.unassigned) : (s.empty)}>{pengguna === "" ? ("Unavailable") : (pengguna)}</td>
 							</tr>
 						</tbody>
 						<tbody>
 							<tr>
-								<td>PC Type</td>
-								<td style={type === "" ? (s.unassigned) : (s.empty)}>{type === "" ? ("Unavailable") : (type)}</td>
-							</tr>
-						</tbody>
-						<tbody>
-							<tr>
-								<td>Remarks</td>
-								<td style={detail === "" ? (s.unassigned) : (s.empty)}>{detail === "" ? ("Unavailable") : (detail)}</td>
+								<td>Status</td>
+								<td style={status === "" ? (s.unassigned) : (s.empty)}>{status === "" ? ("Unavailable") : (status)}</td>
 							</tr>
 						</tbody>
 					</Table>
