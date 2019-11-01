@@ -2,6 +2,9 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Form from 'react-bootstrap/Form';
+import Table from 'react-bootstrap/Table';
 import logo from '../../logo.svg';
 
 class Header extends React.Component {
@@ -17,6 +20,18 @@ class Header extends React.Component {
 
 	render() {
 		if (this.props.login) {
+			const categories = [];
+			categories.push({name: "Operating System", cats: ["tes1", "tes2", "tes3"]});
+			categories.push({name: "Monitor", cats: ["tes1", "tes2", "tes3"]});
+			categories.push({name: "Keyboard", cats: ["tes1", "tes2", "tes3"]});
+			categories.push({name: "Mouse", cats: ["tes1", "tes2", "tes3"]});
+			categories.push({name: "Software", cats: ["tes1", "tes2", "tes3"]});
+			categories.push({name: "VRAM", cats: ["tes1", "tes2", "tes3"]});
+			categories.push({name: "RAM", cats: ["tes1", "tes2", "tes3"]});
+			categories.push({name: "Processor", cats: ["tes1", "tes2", "tes3"]});
+			categories.push({name: "Merk CPU", cats: ["tes1", "tes2", "tes3"]});
+			categories.push({name: "Pengguna"});
+			categories.push({name: "Status", cats: ["tes1", "tes2", "tes3"]});
 			return (
 				<Navbar bg="dark" variant="dark" fixed="top" expand="sm">
   					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -27,7 +42,29 @@ class Header extends React.Component {
 					<Navbar.Collapse id="responsive-navbar-nav">
 						<Nav className="mr-auto">
 							<Nav.Link onClick={() => this.props.setPage(0)}>Overview</Nav.Link>
-							<Nav.Link onClick={() => this.props.setPage(1)}>Tambah PC</Nav.Link>
+							<NavDropdown title="Filter" style={s.filter}>
+								<Form>
+									<Table><tbody>
+										{categories.map((category, index) => (
+											<tr>
+												<td><Form.Label as="td">{category.name}</Form.Label></td>
+												<td>
+													{(!!category.cats) ? (
+														<Form.Control as={"select"}>
+															{category.cats.map((cat) => (<option>{cat}</option>))}
+														</Form.Control>
+													) : (
+														<Form.Control></Form.Control>
+													)}
+												</td>
+											</tr>
+										))}
+										<tr>
+											<td colspan='2'><Button style={s.filterbutton}>Filter</Button></td>
+										</tr>
+									</tbody></Table>
+								</Form>
+							</NavDropdown>
 						</Nav>
 						<Nav>
 							<Button onClick={this.handleLogout} variant="light">Log out</Button>
@@ -54,7 +91,9 @@ class Header extends React.Component {
 }
 
 const s = {
-	nav: {'paddingLeft': 5}
+	nav: {'paddingLeft': 5},
+	filter: {'width': '50em'},
+	filterbutton: {'width': '100%'}
 };
 
 export default Header;
