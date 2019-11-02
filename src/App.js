@@ -10,7 +10,8 @@ class App extends React.Component {
     this.state = {
       login: false,
       page: 0,
-      compId: -1
+      compId: -1,
+      filter: null
     };
   }
 
@@ -32,12 +33,16 @@ class App extends React.Component {
     this.setState({login: false});
     this.setState({compId: -1});
   };
+  
+  setFilter = (newfilter) => {
+    this.setState({filter: newfilter});
+  };
 
   render() {
     return [
-      <Header doLogout={this.doLogout} login={this.state.login} setPage={this.setPage} page={this.state.page}/>,
+      <Header setFilter={this.setFilter} doLogout={this.doLogout} login={this.state.login} setPage={this.setPage} page={this.state.page}/>,
       <div style={s.div}>
-        <Content doLogin={this.doLogin} login={this.state.login} page={this.state.page} compId={this.state.compId} viewDetail={this.viewDetail}/>
+        <Content filter={this.state.filter} doLogin={this.doLogin} login={this.state.login} page={this.state.page} compId={this.state.compId} viewDetail={this.viewDetail}/>
       </div>
     ];
   }

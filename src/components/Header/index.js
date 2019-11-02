@@ -21,17 +21,17 @@ class Header extends React.Component {
 	render() {
 		if (this.props.login) {
 			const categories = [];
-			categories.push({name: "Operating System", cats: ["", "tes1", "tes2", "tes3"]});
-			categories.push({name: "Monitor", cats: ["", "tes1", "tes2", "tes3"]});
-			categories.push({name: "Keyboard", cats: ["", "tes1", "tes2", "tes3"]});
-			categories.push({name: "Mouse", cats: ["", "tes1", "tes2", "tes3"]});
-			categories.push({name: "Software", cats: ["", "tes1", "tes2", "tes3"]});
-			categories.push({name: "VRAM", cats: ["", "tes1", "tes2", "tes3"]});
-			categories.push({name: "RAM", cats: ["", "tes1", "tes2", "tes3"]});
-			categories.push({name: "Processor", cats: ["", "tes1", "tes2", "tes3"]});
-			categories.push({name: "Merk CPU", cats: ["", "tes1", "tes2", "tes3"]});
-			categories.push({name: "Pengguna"});
-			categories.push({name: "Status", cats: ["", "tes1", "tes2", "tes3"]});
+			categories.push({id: "os", name: "Operating System", cats: ["", "tes1", "tes2", "tes3"]});
+			categories.push({id: "monitor", name: "Monitor", cats: ["", "tes1", "tes2", "tes3"]});
+			categories.push({id: "keyboard", name: "Keyboard", cats: ["", "tes1", "tes2", "tes3"]});
+			categories.push({id: "mouse", name: "Mouse", cats: ["", "tes1", "tes2", "tes3"]});
+			categories.push({id: "software", name: "Software", cats: ["", "tes1", "tes2", "tes3"]});
+			categories.push({id: "vram", name: "Video RAM", cats: ["", "tes1", "tes2", "tes3"]});
+			categories.push({id: "ram", name: "RAM", cats: ["", "tes1", "tes2", "tes3"]});
+			categories.push({id: "processor", name: "Processor", cats: ["", "tes1", "tes2", "tes3"]});
+			categories.push({id: "type", name: "CPU Type", cats: ["", "tes1", "tes2", "tes3"]});
+			categories.push({id: "user", name: "User"});
+			categories.push({id: "status", name: "Status", cats: ["", "tes1", "tes2", "tes3"]});
 			return (
 				<Navbar bg="dark" variant="dark" fixed="top" expand="sm">
   					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -43,18 +43,18 @@ class Header extends React.Component {
 						<Nav className="mr-auto">
 							<Nav.Link onClick={() => this.props.setPage(0)}>Overview</Nav.Link>
 							<NavDropdown title="Filter" style={s.filter}>
-								<Form>
+								<Form onSubmit={this.handleFilter}>
 									<Table style={s.table}><tbody>
 										{categories.map((category, index) => (
 											<tr>
 												<td style={s.td}><Form.Label as="td">{category.name}</Form.Label></td>
 												<td style={s.td}>
 													{(!!category.cats) ? (
-														<Form.Control as={"select"}>
+														<Form.Control id={category.id} as={"select"}>
 															{category.cats.map((cat) => (<option>{cat}</option>))}
 														</Form.Control>
 													) : (
-														<Form.Control></Form.Control>
+														<Form.Control id={category.id} ></Form.Control>
 													)}
 												</td>
 											</tr>
