@@ -69,8 +69,8 @@ class Header extends React.Component {
 					<Navbar.Collapse id="responsive-navbar-nav">
 						<Nav className="mr-auto">
 							<Nav.Link onClick={() => this.props.setPage(0)}>Overview</Nav.Link>
-							<NavDropdown title="Filter" style={s.filter}>
-								<Form onSubmit={this.handleFilter}>
+							<NavDropdown title="Filter">
+								<Form onSubmit={this.handleFilter} style={s.filter}>
 									<Table style={s.table}><tbody>
 										{categories.map((category, index) => (
 											<tr>
@@ -122,7 +122,7 @@ class Header extends React.Component {
 
 const s = {
 	nav: {'paddingLeft': 5},
-	filter: {'width': '50em'},
+	filter: {'width': '25em'},
 	filterbutton: {'width': '100%'},
 	td: {'borderStyle': 'none'},
 	tdbtn: {'borderStyle': 'none', 'paddingTop': 0},
