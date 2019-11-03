@@ -11,6 +11,33 @@ class Header extends React.Component {
 	constructor(props) {
 		super(props);
 		this.handleLogout = this.handleLogout.bind(this);
+		this.handleFilter = this.handleFilter.bind(this);
+		this.handleReset = this.handleReset.bind(this);
+	}
+
+	handleFilter(event) {
+		event.preventDefault();
+
+		var filter = {
+			os: this.refs.os.value,
+			monitor: this.refs.monitor.value,
+			keyboard: this.refs.keyboard.value,
+			mouse: this.refs.mouse.value,
+			software: this.refs.software.value,
+			vga: this.refs.vga.value,
+			ram: this.refs.ram.value,
+			processor: this.refs.processor.value,
+			type: this.refs.type.value,
+			user: this.refs.user.value,
+			status: this.refs.status.value
+		};
+
+		this.props.setFilter(filter);
+	}
+
+	handleReset(event) {
+		event.preventDefault();
+		this.props.setFilter(null);
 	}
 
 	handleLogout(event) {
@@ -21,12 +48,12 @@ class Header extends React.Component {
 	render() {
 		if (this.props.login) {
 			const categories = [];
-			categories.push({id: "os", name: "Operating System", cats: ["", "tes1", "tes2", "tes3"]});
+			categories.push({id: "os", name: "Operating System", cats: ["", "ubuntu", "tes2", "tes3"]});
 			categories.push({id: "monitor", name: "Monitor", cats: ["", "tes1", "tes2", "tes3"]});
 			categories.push({id: "keyboard", name: "Keyboard", cats: ["", "tes1", "tes2", "tes3"]});
 			categories.push({id: "mouse", name: "Mouse", cats: ["", "tes1", "tes2", "tes3"]});
 			categories.push({id: "software", name: "Software", cats: ["", "tes1", "tes2", "tes3"]});
-			categories.push({id: "vram", name: "Video RAM", cats: ["", "tes1", "tes2", "tes3"]});
+			categories.push({id: "vga", name: "Video RAM", cats: ["", "tes1", "tes2", "tes3"]});
 			categories.push({id: "ram", name: "RAM", cats: ["", "tes1", "tes2", "tes3"]});
 			categories.push({id: "processor", name: "Processor", cats: ["", "tes1", "tes2", "tes3"]});
 			categories.push({id: "type", name: "CPU Type", cats: ["", "tes1", "tes2", "tes3"]});
@@ -50,20 +77,20 @@ class Header extends React.Component {
 												<td style={s.td}><Form.Label as="td">{category.name}</Form.Label></td>
 												<td style={s.td}>
 													{(!!category.cats) ? (
-														<Form.Control id={category.id} as={"select"}>
+														<Form.Control ref={category.id} as={"select"}>
 															{category.cats.map((cat) => (<option>{cat}</option>))}
 														</Form.Control>
 													) : (
-														<Form.Control id={category.id} ></Form.Control>
+														<Form.Control ref={category.id} ></Form.Control>
 													)}
 												</td>
 											</tr>
 										))}
 										<tr>
-											<td style={s.tdbtn} colspan='2'><Button style={s.filterbutton}>Filter</Button></td>
+											<td style={s.tdbtn} colspan='2'><Button type="submit" style={s.filterbutton}>Filter</Button></td>
 										</tr>
 										<tr>
-											<td style={s.tdbtn} colspan='2'><Button variant="danger" style={s.filterbutton}>Reset</Button></td>
+											<td style={s.tdbtn} colspan='2'><Button onClick={this.handleReset} variant="danger" style={s.filterbutton}>Reset</Button></td>
 										</tr>
 									</tbody></Table>
 								</Form>

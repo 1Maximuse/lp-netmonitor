@@ -40,11 +40,28 @@ class Computer extends React.Component {
 	}
 
 	render() {
-		const ip = comps[this.props.compId-1].ip;
-		const pengguna = comps[this.props.compId-1].pengguna;
-		const status = comps[this.props.compId-1].status;
+		const comp = comps[this.props.compId-1];
+		const ip = comp.ip;
+		const pengguna = comp.pengguna;
+		const status = comp.status;
+
+		const flt = this.props.filter;
+		var filtered = false;
+		if (!!flt) {
+			if (!!flt['os'] && comp.os1 !== flt['os'] && comp.os2 !== flt['os']) filtered = true;
+			if (!!flt['monitor'] && comp.monitor !== flt['monitor']) filtered = true;
+			// if (!!flt['keyboard'] && comp.keyboard !== flt['keyboard']) filtered = true;
+			if (!!flt['mouse'] && comp.mouse !== flt['mouse']) filtered = true;
+			// if (!!flt['software'] && comp.software !== flt['software']) filtered = true;
+			if (!!flt['vga'] && comp.vga !== flt['vga']) filtered = true;
+			if (!!flt['ram'] && comp.ram !== flt['ram']) filtered = true;
+			if (!!flt['processor'] && comp.processor !== flt['processor']) filtered = true;
+			if (!!flt['type'] && comp.merk_cpu !== flt['type']) filtered = true;
+			if (!!flt['user'] && comp.pengguna !== flt['user']) filtered = true;
+			if (!!flt['status'] && comp.status !== flt['status']) filtered = true;
+		}
 		return [
-			<Jumbotron style={this.state.hover ? (s.hover) : (s.empty)} onMouseEnter={() => this.hover()} onMouseLeave={() => this.unhover()} onClick={() => this.click()}>
+			<Jumbotron style={filtered ? (s.inactive) : (this.state.hover ? (s.hover) : (s.empty))} onMouseEnter={() => this.hover()} onMouseLeave={() => this.unhover()} onClick={() => this.click()}>
 				<h4 style={s.title}>Comp {this.props.compId}</h4>
 			</Jumbotron>,
 			<Modal show={this.state.showModal} centered onHide={this.hideModal}>
@@ -83,9 +100,10 @@ class Computer extends React.Component {
 
 const s = {
 	title: {'textAlign': 'center'},
-	hover: {'backgroundColor': '#DCE0E3'},
+	inactive: {'backgroundColor': '#434343', 'transition': 'background-color 0.5s'},
+	hover: {'backgroundColor': '#DCE0E3', 'transition': 'background-color 0.5s'},
 	unassigned: {'color': '#AAAAAA'},
-	empty: {},
+	empty: {'transition': 'background-color 0.5s'},
 	detail: {'borderTop' : '1px solid #e9ecef'}
 }
 

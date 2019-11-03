@@ -34,7 +34,7 @@ class Overview extends React.Component {
 				{!!this.state.comps ? (
 				<Fade in={this.state.fade}><Table borderless size="sm" style={s.table}>
 					<tbody>
-						<Computers comps={this.state.comps} cols={8} rows={8} viewDetail={this.viewDetail}/>
+						<Computers filter={this.props.filter} comps={this.state.comps} cols={8} rows={8} viewDetail={this.viewDetail}/>
 					</tbody>
 				</Table></Fade>
 				) : (<Container style={s.loading}><Spinner style={s.spinner} animation="border" /></Container>)}
@@ -54,7 +54,7 @@ class Computers extends React.Component {
 		for (; i < this.props.rows; i++) {
 			col.push(
 				<tr>
-					<ComputerRow comps={this.props.comps} rev={i % 2 === 0} key={i.toString()} start={this.props.cols*i} cols={this.props.cols} viewDetail={this.viewDetail}/>
+					<ComputerRow filter={this.props.filter} comps={this.props.comps} rev={i % 2 === 0} key={i.toString()} start={this.props.cols*i} cols={this.props.cols} viewDetail={this.viewDetail}/>
 				</tr>
 			);
 		}
@@ -78,7 +78,7 @@ class ComputerRow extends React.Component {
 				if (i + this.props.start > this.props.comps.length) break;
 				row.push(
 					<td>
-						<Computer compId={i+this.props.start} viewDetail={this.viewDetail}/>
+						<Computer filter={this.props.filter} compId={i+this.props.start} viewDetail={this.viewDetail}/>
 					</td>
 				);
 			}
@@ -87,7 +87,7 @@ class ComputerRow extends React.Component {
 				if (i + this.props.start > this.props.comps.length) break;
 				row.push(
 					<td>
-						<Computer compId={i+this.props.start} viewDetail={this.viewDetail}/>
+						<Computer filter={this.props.filter} compId={i+this.props.start} viewDetail={this.viewDetail}/>
 					</td>
 				);
 			}
@@ -97,7 +97,7 @@ class ComputerRow extends React.Component {
 				if (i + this.props.start > this.props.comps.length) break;
 				row.push(
 					<td>
-						<Computer compId={i+this.props.start} viewDetail={this.viewDetail}/>
+						<Computer filter={this.props.filter} compId={i+this.props.start} viewDetail={this.viewDetail}/>
 					</td>
 				);
 			}
@@ -106,7 +106,7 @@ class ComputerRow extends React.Component {
 				if (i + this.props.start > this.props.comps.length) break;
 				row.push(
 					<td>
-						<Computer compId={i+this.props.start} viewDetail={this.viewDetail}/>
+						<Computer filter={this.props.filter} compId={i+this.props.start} viewDetail={this.viewDetail}/>
 					</td>
 				);
 			}
