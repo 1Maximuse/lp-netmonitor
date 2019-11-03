@@ -10,27 +10,21 @@ class LoginForm extends React.Component {
 		super(props);
 		this.state = {
 			failed: false,
-			user: '',
-			pass: '',
+			token: '',
 		
 		};
-		this.handleChangeUser = this.handleChangeUser.bind(this);
-		this.handleChangePass = this.handleChangePass.bind(this);
+		this.handleChangeToken = this.handleChangeToken.bind(this);
     	this.handleLogin = this.handleLogin.bind(this);
 	}
 
-	handleChangeUser(event) {
-		this.setState({user: event.target.value});
-	}
-
-	handleChangePass(event) {
-		this.setState({pass: event.target.value});
+	handleChangeToken(event) {
+		this.setState({token: event.target.value});
 	}
 
 	handleLogin(event) {
 		event.preventDefault();
 		// TODO: AUTHENTICATE
-		if (this.state.user === "noel" && this.state.pass === "admin") {
+		if (this.state.token === "lpadmin") {
 			this.setState({failed: false});
 			this.props.doLogin();
 		} else {
@@ -42,19 +36,13 @@ class LoginForm extends React.Component {
 		return (
 			<Container>
 				<Jumbotron style={s.jumb}>
-					{this.state.failed ? (
+					{this.state.failed && (
 						<Alert onClose={() => this.setState({failed: false})} dismissible variant="danger">Wrong credentials!</Alert>
-					) : (
-						<></>
 					)}
 					<Form onSubmit={this.handleLogin} style={s.form}>
 						<Form.Group>
-							<Form.Label>Username</Form.Label>
-							<Form.Control required type="text" placeholder="Enter username" onChange={this.handleChangeUser} value={this.state.user} />
-						</Form.Group>
-						<Form.Group>
-							<Form.Label>Password</Form.Label>
-							<Form.Control required type="password" placeholder="Enter password" onChange={this.handleChangePass} value={this.state.pass} />
+							<Form.Label>Token</Form.Label>
+							<Form.Control required type="password" placeholder="Enter token" onChange={this.handleChangeToken} value={this.state.pass} />
 						</Form.Group>
 						<Button className="w-100" type="submit" variant="success">Login</Button>
 					</Form>
