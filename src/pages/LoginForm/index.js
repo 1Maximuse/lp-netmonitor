@@ -4,6 +4,14 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import Container from 'react-bootstrap/Container';
+import BGImage from '../../img/bg1.jpg';
+
+var imgurl = {
+	backgroundImage: `url(${BGImage})`,
+	backgroundPosition: 'center',
+	backgroundSize: 'cover',
+	height: '100vh'
+};
 
 class LoginForm extends React.Component {
 	constructor(props) {
@@ -34,27 +42,36 @@ class LoginForm extends React.Component {
 
 	render() {
 		return (
-			<Container>
-				<Jumbotron style={s.jumb}>
-					{this.state.failed && (
-						<Alert onClose={() => this.setState({failed: false})} dismissible variant="danger">Wrong credentials!</Alert>
-					)}
-					<Form onSubmit={this.handleLogin} style={s.form}>
-						<Form.Group>
-							<Form.Label>Token</Form.Label>
-							<Form.Control required type="password" placeholder="Enter token" onChange={this.handleChangeToken} value={this.state.pass} />
-						</Form.Group>
-						<Button className="w-100" type="submit" variant="success">Login</Button>
-					</Form>
-				</Jumbotron>
-			</Container>
+			<div style={imgurl}>
+				<div style={s.loginWrapper}>
+					<Jumbotron style={s.jumb}>
+					<h1 className="text-dark">LP Net Monitor</h1>
+					<hr/>
+					<h5 className="text-dark">Please Login</h5>
+						<Form onSubmit={this.handleLogin} style={s.form}>
+							<Form.Group>
+								{/* <Form.Label>Token</Form.Label> */}
+								<Form.Control required type="password" placeholder="Enter Token" onChange={this.handleChangeToken} value={this.state.pass} />
+								<Form.Text className="text-muted">
+									Provide useful information here :)
+								</Form.Text>
+							</Form.Group>
+							{this.state.failed && (
+								<Alert onClose={() => this.setState({failed: false})} dismissible variant="danger">Wrong credentials!</Alert>
+							)}
+							<Button className="w-100" type="submit" variant="primary">Login</Button>
+						</Form>
+					</Jumbotron>
+				</div>
+			</div>
 		);
 	}
 }
 
 const s = {
-	jumb: {position: 'absolute', left: '50%', top: '40%', transform: 'translate(-50%, -50%)'},
-	form: {width: '300px'}
+	jumb: {position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', textAlign:'left'},
+	loginWrapper: {textAlign:'center'},
+	form: {minWidth: '400px'}
 };
 
 export default LoginForm;
