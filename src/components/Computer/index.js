@@ -69,22 +69,22 @@ class Computer extends React.Component {
 					<Modal.Title>Computer {this.props.compId}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<Table responsive>
+					<Table responsive borderless>
 						<tbody>
 							<tr>
-								<td>IP Address</td>
+								<td style={s.tdStyle}>IP Address</td>
 								<td style={ip === "" ? (s.unassigned) : (s.empty)}>{ip === "" ? ("Unavailable") : (ip)}</td>
 							</tr>
 						</tbody>
 						<tbody>
 							<tr>
-								<td>User</td>
+								<td style={s.tdStyle}>User</td>
 								<td style={pengguna === "" ? (s.unassigned) : (s.empty)}>{pengguna === "" ? ("Unavailable") : (pengguna)}</td>
 							</tr>
 						</tbody>
 						<tbody>
 							<tr>
-								<td>Status</td>
+								<td style={s.tdStyle}>Status</td>
 								<td style={status === "" ? (s.unassigned) : (s.empty)}>{status === "" ? ("Unavailable") : (status)}</td>
 							</tr>
 						</tbody>
@@ -99,9 +99,10 @@ class Computer extends React.Component {
 }
 
 const s = {
+	tdStyle: {'fontWeight':'bold'},
 	title: {'textAlign': 'center'},
 	inactive: {'backgroundColor': '#434343', 'transition': 'background-color 0.5s'},
-	hover: {'backgroundColor': '#DCE0E3', 'transition': 'background-color 0.5s'},
+	hover: {'backgroundColor': '#DCE0E3', 'transition': 'background-color 0.5s', cursor:'pointer'},
 	unassigned: {'color': '#AAAAAA'},
 	empty: {'transition': 'background-color 0.5s'},
 	detail: {'borderTop' : '1px solid #e9ecef'}

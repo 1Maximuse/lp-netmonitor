@@ -31,13 +31,21 @@ class Overview extends React.Component {
 	render() {
 		return (
 			<Container fluid style={s.cont}>
-				{!!this.state.comps ? (
-				<Fade in={this.state.fade}><Table borderless size="sm" style={s.table}>
-					<tbody>
-						<Computers filter={this.props.filter} comps={this.state.comps} cols={8} rows={8} viewDetail={this.viewDetail}/>
-					</tbody>
-				</Table></Fade>
-				) : (<Container style={s.loading}><Spinner style={s.spinner} animation="border" /></Container>)}
+				{
+					!!this.state.comps ? (
+						<Fade in={this.state.fade}><Table borderless size="sm" style={s.table}>
+							<tbody>
+								<Computers filter={this.props.filter} comps={this.state.comps} cols={8} rows={8} viewDetail={this.viewDetail}/>
+							</tbody>
+						</Table>
+						</Fade>
+					) : (
+						<Container style={s.loading}>
+							<Spinner animation="border" style={s.spinner} variant="primary" />
+							<h5>Please Wait</h5>
+						</Container>
+					)
+				}
 			</Container>
 		);
 	}
@@ -111,7 +119,6 @@ class ComputerRow extends React.Component {
 				);
 			}
 		}
-		
 		return (row);
 	}
 }
@@ -121,7 +128,7 @@ const s = {
 	spacer: {'paddingLeft': '4em', 'paddingRight': '4em'},
 	table: {'margin': 0},
 	loading: {'textAlign': 'center', 'paddingTop': 40},
-	spinner: {'width': 70, 'height': 70}
+	spinner: {'width': 64, 'height': 64}
 };
 
 export default Overview;
