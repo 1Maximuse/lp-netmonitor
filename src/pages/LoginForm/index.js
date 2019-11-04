@@ -3,7 +3,6 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
-import Container from 'react-bootstrap/Container';
 import BGImage from '../../img/bg1.jpg';
 
 var imgurl = {

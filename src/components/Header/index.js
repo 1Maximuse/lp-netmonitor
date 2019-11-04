@@ -122,7 +122,7 @@ class Header extends React.Component {
 
 const s = {
 	nav: {'paddingLeft': 5},
-	filter: {'width': '25em'},
+	filter: {'width': '25em', 'overflowX': 'auto', 'maxHeight': '80vh'},
 	filterbutton: {'width': '100%'},
 	td: {'borderStyle': 'none'},
 	tdbtn: {'borderStyle': 'none', 'paddingTop': 0},
