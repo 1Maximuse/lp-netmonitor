@@ -9,12 +9,16 @@ class Content extends React.Component {
 		this.props.viewDetail(detail);
 	};
 
+	setComps = (comps) => {
+		this.props.setComps(comps);
+	};
+
 	render() {
 		if (this.props.login === false) {
 			return <LoginForm doLogin={() => this.props.doLogin()}/>;
 		} else {
 			if (this.props.compId === -1) {
-				if (this.props.page === 0) return <Overview filter={this.props.filter} viewDetail={this.viewDetail}/>;
+				if (this.props.page === 0) return <Overview setComps={this.setComps} filter={this.props.filter} viewDetail={this.viewDetail}/>;
 				else if (this.props.page === 1) return <AddPC/>;
 			} else {
 				return <ComputerDetail compId={this.props.compId}/>

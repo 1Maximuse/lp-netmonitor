@@ -3,7 +3,7 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
-import comps from '../../testjson/computers';
+// import comps from '../../testjson/computers';
 
 class Computer extends React.Component {
 	constructor(props) {
@@ -40,6 +40,7 @@ class Computer extends React.Component {
 	}
 
 	render() {
+		const comps = this.props.comps;
 		const comp = comps[this.props.compId-1];
 		const ip = comp.ip;
 		const pengguna = comp.pengguna;

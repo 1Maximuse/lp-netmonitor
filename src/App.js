@@ -11,7 +11,8 @@ class App extends React.Component {
       login: false,
       page: 0,
       compId: -1,
-      filter: null
+      filter: null,
+      compData: null
     };
   }
 
@@ -38,11 +39,15 @@ class App extends React.Component {
     this.setState({filter: newfilter});
   };
 
+  setComps = (comps) => {
+    this.setState({compData: comps});
+  };
+
   render() {
     return [
-      <Header setFilter={this.setFilter} doLogout={this.doLogout} login={this.state.login} setPage={this.setPage} page={this.state.page}/>,
+      <Header comps={this.state.compData} setFilter={this.setFilter} doLogout={this.doLogout} login={this.state.login} setPage={this.setPage} page={this.state.page}/>,
       <div style={s.div}>
-        <Content filter={this.state.filter} doLogin={this.doLogin} login={this.state.login} page={this.state.page} compId={this.state.compId} viewDetail={this.viewDetail}/>
+        <Content setComps={this.setComps} filter={this.state.filter} doLogin={this.doLogin} login={this.state.login} page={this.state.page} compId={this.state.compId} viewDetail={this.viewDetail}/>
       </div>
     ];
   }

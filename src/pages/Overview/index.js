@@ -20,11 +20,13 @@ class Overview extends React.Component {
 	};
 
 	componentDidMount() {
-		fetch('http://www.mocky.io/v2/5dbd54823300007d6016a17a?mocky-delay=500ms')
+		fetch('http://www.mocky.io/v2/5dc0cbe433000071001a4d17?mocky-delay=500ms')
 		.then((results) => (results.json()))
 		.then((data) => {
 			this.setState({comps: data});
 			this.setState({fade: true});
+			this.props.setComps(data);
+			// console.log(data);
 		});
 	}
 
@@ -86,7 +88,7 @@ class ComputerRow extends React.Component {
 				if (i + this.props.start > this.props.comps.length) break;
 				row.push(
 					<td>
-						<Computer filter={this.props.filter} compId={i+this.props.start} viewDetail={this.viewDetail}/>
+						<Computer comps={this.props.comps} filter={this.props.filter} compId={i+this.props.start} viewDetail={this.viewDetail}/>
 					</td>
 				);
 			}
@@ -95,7 +97,7 @@ class ComputerRow extends React.Component {
 				if (i + this.props.start > this.props.comps.length) break;
 				row.push(
 					<td>
-						<Computer filter={this.props.filter} compId={i+this.props.start} viewDetail={this.viewDetail}/>
+						<Computer comps={this.props.comps} filter={this.props.filter} compId={i+this.props.start} viewDetail={this.viewDetail}/>
 					</td>
 				);
 			}
@@ -105,7 +107,7 @@ class ComputerRow extends React.Component {
 				if (i + this.props.start > this.props.comps.length) break;
 				row.push(
 					<td>
-						<Computer filter={this.props.filter} compId={i+this.props.start} viewDetail={this.viewDetail}/>
+						<Computer comps={this.props.comps} filter={this.props.filter} compId={i+this.props.start} viewDetail={this.viewDetail}/>
 					</td>
 				);
 			}
@@ -114,7 +116,7 @@ class ComputerRow extends React.Component {
 				if (i + this.props.start > this.props.comps.length) break;
 				row.push(
 					<td>
-						<Computer filter={this.props.filter} compId={i+this.props.start} viewDetail={this.viewDetail}/>
+						<Computer comps={this.props.comps} filter={this.props.filter} compId={i+this.props.start} viewDetail={this.viewDetail}/>
 					</td>
 				);
 			}

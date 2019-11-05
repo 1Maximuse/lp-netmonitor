@@ -15,7 +15,7 @@ class Computeros2 extends React.Component {
 	}
 
 	componentDidMount() {
-		fetch('http://www.mocky.io/v2/5dbd54823300007d6016a17a?mocky-delay=500ms')
+		fetch('http://www.mocky.io/v2/5dc0cbe433000071001a4d17?mocky-delay=500ms')
 		.then((results) => (results.json()))
 		.then((data) => {
 			this.setState({comps: data});
