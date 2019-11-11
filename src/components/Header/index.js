@@ -38,6 +38,17 @@ class Header extends React.Component {
 	handleReset(event) {
 		event.preventDefault();
 		this.props.setFilter(null);
+		this.refs.os.value = "";
+		this.refs.monitor.value = "";
+		this.refs.keyboard.value = "";
+		this.refs.mouse.value = "";
+		this.refs.software.value = "";
+		this.refs.vga.value = "";
+		this.refs.ram.value = "";
+		this.refs.processor.value = "";
+		this.refs.type.value = "";
+		this.refs.user.value = "";
+		this.refs.status.value = "";
 	}
 
 	handleLogout(event) {
@@ -100,18 +111,6 @@ class Header extends React.Component {
 				categories.push({id: "type", name: "CPU Type", cats: ["", ...type]});
 				categories.push({id: "user", name: "User"});
 				categories.push({id: "status", name: "Status", cats: ["", ...status]});
-			} else {
-				categories.push({id: "os", name: "Operating System", cats: ["", "ubuntu", "tes2", "tes3"]});
-				categories.push({id: "monitor", name: "Monitor", cats: ["", "tes1", "tes2", "tes3"]});
-				categories.push({id: "keyboard", name: "Keyboard", cats: ["", "tes1", "tes2", "tes3"]});
-				categories.push({id: "mouse", name: "Mouse", cats: ["", "tes1", "tes2", "tes3"]});
-				categories.push({id: "software", name: "Software", cats: ["", "tes1", "tes2", "tes3"]});
-				categories.push({id: "vga", name: "Video RAM", cats: ["", "tes1", "tes2", "tes3"]});
-				categories.push({id: "ram", name: "RAM", cats: ["", "tes1", "tes2", "tes3"]});
-				categories.push({id: "processor", name: "Processor", cats: ["", "tes1", "tes2", "tes3"]});
-				categories.push({id: "type", name: "CPU Type", cats: ["", "tes1", "tes2", "tes3"]});
-				categories.push({id: "user", name: "User"});
-				categories.push({id: "status", name: "Status", cats: ["", "tes1", "tes2", "tes3"]});
 			}
 			return (
 				<Navbar bg="dark" variant="dark" fixed="top" expand="sm">
